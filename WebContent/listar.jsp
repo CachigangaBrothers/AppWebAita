@@ -49,7 +49,6 @@ if (conductor != null){
 		box-shadow: 0px 0px 20px 2px black;
 		border-radius: 3px;
 		
-		
 	}
 	.icono {
 		width: auto;
@@ -95,7 +94,7 @@ if (conductor != null){
 			}
 	
 	int cantidadDeDatos = 5; //cantidad de columnas que tendrá la tabla %> 
-	<h1>Bienvenido, <%= conductorModelo.getNombre(idConductor) %></h1>
+	<h1>Bienvenido, <%= conductorModelo.select(idConductor).getNombre() %></h1>
 	<h2>Tus Viajes: </h2>
 	<table class='viajes' id="tablaViajes">
 	<tr>
@@ -150,12 +149,19 @@ if (conductor != null){
 			<td><p class="dato"><%= viaje.getCarga()%></p></td>
 			<td><p class="dato"><%= viaje.getDescarga()%></p></td>
 			<td><p class="dato"><%= viaje.getFecha()%></p></td>
+			<td><p class="dato"><%= viaje.getIdConductor()%></p></td>
 			<td>
-				<p class='dato'>
-					<a href='DetallesViaje.jsp?id=<%= viaje.getIdViaje()%>'><img src="images/ojo.png" class="icono"></a>
-					<a href='Eliminar.jsp?id=<%= viaje.getIdViaje()%>'><img src="images/papelera.png" class="icono"></a>
-					<a href='Modificar.jsp?id=<%= viaje.getIdViaje()%>'><img src="images/lapiz.png" class="icono"></a>
-				</p>
+				<% if ((idConductor == viaje.getIdConductor()) || idConductor == 0){
+					%>
+					
+						<p class='dato'>
+							<a href='DetallesViaje.jsp?id=<%= viaje.getIdViaje()%>'><img src="images/ojo.png" class="icono"></a>
+							<a href='Eliminar.jsp?id=<%= viaje.getIdViaje()%>'><img src="images/papelera.png" class="icono"></a>
+							<a href='Modificar.jsp?id=<%= viaje.getIdViaje()%>'><img src="images/lapiz.png" class="icono"></a>
+						</p>
+					
+					
+				<%  }  %>
 			</td>
 		</tr>
 		<%

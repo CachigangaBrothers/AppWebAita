@@ -28,6 +28,7 @@ public class ViajeModelo extends Conector{
 		viaje.setIdCombustible(rs.getInt("id_Combustible"));
 		viaje.setIdViaje(rs.getInt("id_Viaje"));
 		viaje.setKilometraje(rs.getInt("kilometraje"));
+		viaje.setIdConductor(rs.getInt("id_conductor"));
 		
 		return viaje;
 	}
@@ -37,13 +38,14 @@ public class ViajeModelo extends Conector{
 		PreparedStatement pst;
 		try {		
 			
-			pst = conexion.prepareStatement("INSERT INTO viajes(carga, descarga, kilometraje, id_combustible, id_cmr, fecha) VALUES (?,?,?,?,?,?)");
+			pst = conexion.prepareStatement("INSERT INTO viajes(carga, descarga, kilometraje, id_combustible, id_cmr, fecha, id_conductor) VALUES (?,?,?,?,?,?,?)");
 			pst.setString(1, viaje.getCarga());
 			pst.setString(2, viaje.getDescarga());
 			pst.setInt   (3, viaje.getKilometraje());
 			pst.setInt   (4, combustibleModelo.getId());
 			pst.setInt   (5, cmrModelo.getId());
 			pst.setDate  (6, viaje.getFecha());
+			pst.setInt	 (7, viaje.getIdConductor());
 			
 			pst.execute();
 			System.out.println("VIAJE INSERTADO CON ÉXITO");
@@ -74,13 +76,16 @@ public class ViajeModelo extends Conector{
 			
 			while (rs.next()){
 				Viaje viaje = new Viaje();
-				viaje.setIdViaje(rs.getInt(1));
-				viaje.setCarga(rs.getString(2));
-				viaje.setDescarga(rs.getString(3));
-				viaje.setKilometraje(rs.getInt(4));
-				viaje.setIdCombustible(rs.getInt(5));
-				viaje.setIdCmr(rs.getInt(6));
-				viaje.setFecha(rs.getDate(7));
+				
+				viaje.setIdViaje(rs.getInt("id_viaje"));
+				viaje.setCarga(rs.getString("carga"));
+				viaje.setDescarga(rs.getString("descarga"));
+				viaje.setKilometraje(rs.getInt("kilometraje"));
+				viaje.setIdCombustible(rs.getInt("id_combustible"));
+				viaje.setIdCmr(rs.getInt("id_cmr"));
+				viaje.setFecha(rs.getDate("fecha"));
+				viaje.setIdConductor(rs.getInt("id_conductor"));
+				
 
 				lista.add(viaje);
 			}
@@ -124,13 +129,14 @@ public class ViajeModelo extends Conector{
 	}
 	
 	public void update (Viaje viaje, int id) throws SQLException{
-		PreparedStatement pst = super.conexion.prepareStatement("UPDATE viajes SET carga=?, descarga=?, kilometraje=?, fecha=? WHERE id_viaje=?");
+		PreparedStatement pst = super.conexion.prepareStatement("UPDATE viajes SET carga=?, descarga=?, kilometraje=?, fecha=?, id_conductor=? WHERE id_viaje=?");
 		
 		pst.setString(1, viaje.getCarga());
 		pst.setString(2, viaje.getDescarga());
 		pst.setInt(3, viaje.getKilometraje());
 		pst.setDate(4, viaje.getFecha());
-		pst.setInt(5, id);
+		pst.setInt(5, viaje.getIdConductor());
+		pst.setInt(6, id);
 		
 		pst.execute();
 

@@ -8,10 +8,11 @@ public class Viaje {
 		private String descarga;
 		private int kilometraje;
 		private java.sql.Date fecha;
-		private Conductor conductor;
+		
 		
 		private int idCombustible;
 		private int idCmr;
+		private int idConductor;
 		
 		//metodos
 		public int getIdViaje() {
@@ -61,11 +62,11 @@ public class Viaje {
 			return "Viaje [idViaje=" + idViaje + ", carga=" + carga + ", descarga=" + descarga + ", kilometraje="
 					+ kilometraje + ", fecha=" + fecha + ", idCombustible=" + idCombustible + ", idCmr=" + idCmr + "]";
 		}
-		public Conductor getConductor() {
-			return conductor;
+		public int getIdConductor() {
+			return idConductor;
 		}
-		public void setConductor(Conductor conductor) {
-			this.conductor = conductor;
+		public void setIdConductor(int idConductor) {
+			this.idConductor = idConductor;
 		}
 		
 	

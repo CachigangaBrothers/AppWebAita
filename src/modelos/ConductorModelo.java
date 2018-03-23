@@ -4,17 +4,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import clases.Conductor;
 import clases.Conector;
 
 public class ConductorModelo extends Conector {
-
-	public String getNombre(int id) throws SQLException{
-		PreparedStatement pst = super.conexion.prepareStatement("select nombre from conductor where id_conductor = ?");
-		pst.setInt(1, id);
+	
+	public Conductor select (int id) throws SQLException{
+		Conductor conductor = new Conductor();
+		PreparedStatement pst = super.conexion.prepareStatement("select * from conductor where id_conductor=?;");
+		pst.setInt(1, id);	
+		
 		ResultSet rs = pst.executeQuery();
+		
 		rs.next();
 		
-		return rs.getString("nombre");
+		conductor.setId_conductor(rs.getInt("id_conductor"));
+		conductor.setNombre(rs.getString("nombre"));
+		
+		return conductor;
 	}
 	
 }

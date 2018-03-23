@@ -60,6 +60,10 @@
 				<td class="dato"><% out.println(viaje.getFecha()); %></td>
 			</tr>
 			<tr>
+				<td>Conductor</td>
+				<td class="dato"><% out.println(viaje.getIdConductor()); %></td>
+			</tr>
+			<tr>
 				<td>Número CMR</td>
 				<td class="dato"><% out.println(cmr.getNumCmr()); %></td>
 			</tr>

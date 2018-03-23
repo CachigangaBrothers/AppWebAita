@@ -68,7 +68,7 @@ public class Vistas {
 				break;
 				
 			case BUSCAR:
-				VistaBuscar.menuBuscar();
+				
 				break;
 				
 			default:
