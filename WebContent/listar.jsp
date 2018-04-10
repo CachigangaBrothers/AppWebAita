@@ -1,3 +1,6 @@
+<% //conductorIniciado --> el objeto de la clase conductor con el que se ha iniciado sesión %>
+
+
 <%@ page import = "modelos.ViajeModelo" %>
 <%@ page import = "modelos.CombustibleModelo" %>
 <%@ page import = "modelos.BusquedaModelo" %>
@@ -72,6 +75,13 @@ if (conductor != null){
 
 </head>
 <body>
+
+<a href="listar.jsp?idConductor=0"><button>Iniciar Sesión como Admin</button></a>
+<a href="listar.jsp?idConductor=1"><button>Iniciar Sesión como Jose Luis</button></a>
+<a href="listar.jsp?idConductor=2"><button>Iniciar Sesión como Juanjo</button></a>
+
+<a href="Login.jsp"><button>Iniciar Sesión</button></a>
+
 <% 
 
 	
@@ -79,6 +89,7 @@ if (conductor != null){
 	ViajeModelo viajeModelo = new ViajeModelo();
 	ConductorModelo conductorModelo = new ConductorModelo();
 	ArrayList<Viaje> viajes = viajeModelo.getViajes();
+	Conductor conductorIniciado = (Conductor)session.getAttribute("sesion");
 	
 	int id = 0;
 	
@@ -94,7 +105,7 @@ if (conductor != null){
 			}
 	
 	int cantidadDeDatos = 5; //cantidad de columnas que tendrá la tabla %> 
-	<h1>Bienvenido, <%= conductorModelo.select(idConductor).getNombre() %></h1>
+	<h1>Bienvenido, <%= conductorIniciado.getNombre() %></h1>
 	<h2>Tus Viajes: </h2>
 	<table class='viajes' id="tablaViajes">
 	<tr>
@@ -136,7 +147,9 @@ if (conductor != null){
 			</table>
 		</td>
 		<td></td>
-		<td><a href='insertar.jsp'><img src="images/plus.png" id="insertar" class="icono"></a></td>
+		<% if (conductorIniciado.getId_conductor() != 0){
+			out.print("<td><a href='insertar.jsp'><img src='images/plus.png' id='insertar' class='icono'></a></td>");
+		} %>
 		<td><a href='Buscar.jsp'><img src="images/lupa.png" id="buscar" class="icono"></a></td>
 	</tr>
 	
@@ -151,7 +164,7 @@ if (conductor != null){
 			<td><p class="dato"><%= viaje.getFecha()%></p></td>
 			<td><p class="dato"><%= viaje.getIdConductor()%></p></td>
 			<td>
-				<% if ((idConductor == viaje.getIdConductor()) || idConductor == 0){
+				<% if ((conductorIniciado.getId_conductor() == viaje.getIdConductor()) || conductorIniciado.getId_conductor() == 0){
 					%>
 					
 						<p class='dato'>

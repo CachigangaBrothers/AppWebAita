@@ -1,8 +1,9 @@
 <%@ page import="clases.*" %>
 <%@ page import="modelos.*" %>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <% Conductor conductorIniciado = (Conductor) session.getAttribute("sesion");%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -57,7 +58,7 @@
 		<div class="contenedorForm">
 			<table>
 				<th>
-					<td colspan="4"><h1>Insertar Viaje</h1></td>
+					<td colspan="4"><h1>Insertar Viaje (<%= conductorIniciado.getNombre() %>)</h1></td>
 				</th>	
 				<tr>
 					<td>Lugar Carga</td>
