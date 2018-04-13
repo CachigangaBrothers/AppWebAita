@@ -14,7 +14,8 @@
 	ViajeModelo viajeModelo = new ViajeModelo();
 	CmrModelo cmrModelo = new CmrModelo();
 	CombustibleModelo combustibleModelo = new CombustibleModelo();
-
+	Conductor conductorIniciado = (Conductor)session.getAttribute("sesion");
+	
 	Viaje viaje = new Viaje();
 	Cmr cmr = new Cmr();
 	Combustible combustible = new Combustible();
@@ -26,6 +27,8 @@
 	viaje.setKilometraje(Integer.parseInt(request.getParameter("kilometraje")));
 	viaje.setFecha(Utilidad.parseDate (request.getParameter("fecha")));
 	
+	viaje.setNota(request.getParameter("nota"));
+	viaje.setIdConductor(conductorIniciado.getId_conductor());
 	
 	//CREAR OBJETO CMR CON LOS NUEVOS DATOS
 	cmr.setNumCmr(Integer.parseInt(request.getParameter("numCmr")));

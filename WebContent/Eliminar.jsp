@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"  %>
-    
+<%@include file="detectarSesionIniciada.jsp" %>
 <%@ page import="modelos.*" %>
 <%@ page import="clases.*" %>
 <% ViajeModelo viajeModelo = new ViajeModelo(); %>
@@ -12,7 +12,9 @@
 </head>
 <body>
 
-	<% int id = Integer.parseInt (request.getParameter("id")); 
+	<% 
+	
+	int id = Integer.parseInt (request.getParameter("id")); 
 	viajeModelo.delete(id);
 	
 	response.sendRedirect("listar.jsp");

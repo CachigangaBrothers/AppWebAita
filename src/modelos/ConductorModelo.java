@@ -45,4 +45,12 @@ public class ConductorModelo extends Conector {
 		return conductor;
 	}
 	
+	public void insert(Conductor conductor) throws SQLException{
+		PreparedStatement pst = super.conexion.prepareStatement("insert into conductor (nombre, usuario, contraseña) values (?,?,?);");
+			pst.setString(1, conductor.getNombre());
+			pst.setString(2, conductor.getUsuario());
+			pst.setString(3, conductor.getContrasena());
+		pst.execute();
+	}
+	
 }

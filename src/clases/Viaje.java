@@ -8,6 +8,7 @@ public class Viaje {
 		private String descarga;
 		private int kilometraje;
 		private java.sql.Date fecha;
+		private String nota;
 		
 		
 		private int idCombustible;
@@ -68,6 +69,13 @@ public class Viaje {
 		public void setIdConductor(int idConductor) {
 			this.idConductor = idConductor;
 		}
+		public String getNota() {
+			return nota;
+		}
+		public void setNota(String nota) {
+			this.nota = nota;
+		}
+		
 		
 	
 		

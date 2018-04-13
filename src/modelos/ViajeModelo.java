@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import clases.Cmr;
+import clases.Conductor;
 import clases.Conector;
 import clases.Utilidad;
 import clases.Viaje;
@@ -29,6 +30,7 @@ public class ViajeModelo extends Conector{
 		viaje.setIdViaje(rs.getInt("id_Viaje"));
 		viaje.setKilometraje(rs.getInt("kilometraje"));
 		viaje.setIdConductor(rs.getInt("id_conductor"));
+		viaje.setNota(rs.getString("nota"));
 		
 		return viaje;
 	}
@@ -38,7 +40,7 @@ public class ViajeModelo extends Conector{
 		PreparedStatement pst;
 		try {		
 			
-			pst = conexion.prepareStatement("INSERT INTO viajes(carga, descarga, kilometraje, id_combustible, id_cmr, fecha, id_conductor) VALUES (?,?,?,?,?,?,?)");
+			pst = conexion.prepareStatement("INSERT INTO viajes(carga, descarga, kilometraje, id_combustible, id_cmr, fecha, id_conductor, nota) VALUES (?,?,?,?,?,?,?,?)");
 			pst.setString(1, viaje.getCarga());
 			pst.setString(2, viaje.getDescarga());
 			pst.setInt   (3, viaje.getKilometraje());
@@ -46,6 +48,7 @@ public class ViajeModelo extends Conector{
 			pst.setInt   (5, cmrModelo.getId());
 			pst.setDate  (6, viaje.getFecha());
 			pst.setInt	 (7, viaje.getIdConductor());
+			pst.setString(8, viaje.getNota());
 			
 			pst.execute();
 			System.out.println("VIAJE INSERTADO CON ÉXITO");
@@ -85,7 +88,7 @@ public class ViajeModelo extends Conector{
 				viaje.setIdCmr(rs.getInt("id_cmr"));
 				viaje.setFecha(rs.getDate("fecha"));
 				viaje.setIdConductor(rs.getInt("id_conductor"));
-				
+				viaje.setNota(rs.getString("nota"));
 
 				lista.add(viaje);
 			}
@@ -129,14 +132,16 @@ public class ViajeModelo extends Conector{
 	}
 	
 	public void update (Viaje viaje, int id) throws SQLException{
-		PreparedStatement pst = super.conexion.prepareStatement("UPDATE viajes SET carga=?, descarga=?, kilometraje=?, fecha=?, id_conductor=? WHERE id_viaje=?");
+		PreparedStatement pst = super.conexion.prepareStatement("UPDATE viajes SET carga=?, descarga=?, kilometraje=?, fecha=?, id_conductor=?, nota=? WHERE id_viaje=?");
 		
 		pst.setString(1, viaje.getCarga());
 		pst.setString(2, viaje.getDescarga());
 		pst.setInt(3, viaje.getKilometraje());
 		pst.setDate(4, viaje.getFecha());
 		pst.setInt(5, viaje.getIdConductor());
-		pst.setInt(6, id);
+		pst.setString(6, viaje.getNota());
+		pst.setInt(7, id);
+		
 		
 		pst.execute();
 

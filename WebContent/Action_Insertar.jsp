@@ -11,6 +11,7 @@
 <body>
 
 <%
+
 	ViajeModelo viajeModelo = new ViajeModelo();
 	CmrModelo cmrModelo = new CmrModelo();
 	CombustibleModelo combustibleModelo = new CombustibleModelo();
@@ -27,6 +28,7 @@
 	viaje.setFecha(Utilidad.parseDate (request.getParameter("fecha")));
 	
 	viaje.setIdConductor(conductorIniciado.getId_conductor());
+	viaje.setNota(request.getParameter("nota"));
 	
 	
 	

@@ -10,10 +10,12 @@
 </head>
 <body style="text-align:center;">
 <form method="get" action="Action_Login.jsp">
-	<h2>Usuario:</h2> <input type="text" name="usuario" id="usuario">
-	<h2>Contraseña:</h2><input type="password" name="contrasena" id="contrasena">
+	<h2>Usuario:</h2> <input type="text" name="usuario" id="usuario" value="txeli">
+	<h2>Contraseña:</h2><input type="password" name="contrasena" id="contrasena" value="txeli">
 	<br><br>
-	<input type="submit">
+	<input type="submit" value="Iniciar Sesión">
+	<a href="registro.jsp">Registrarse</a>
+	
 </form>
 
 

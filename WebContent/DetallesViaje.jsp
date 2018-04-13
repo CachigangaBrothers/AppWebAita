@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+    <%@include file="detectarSesionIniciada.jsp" %>
     <%@ page import="modelos.*" %>
     <%@ page import="clases.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -87,6 +87,11 @@
 				<td>Consumo</td>
 				<td class="dato"><% out.println(combustible.getConsumo()); %></td>
 			</tr>
+			<% if (!viaje.getNota().equals("")){ %>
+			<tr>
+				<td colspan="2" style="text-align:left;"><% out.println(viaje.getNota()); %></td>
+			</tr>
+			<% } %>
 		</table>
 		
 		

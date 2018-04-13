@@ -2,7 +2,8 @@
 <%@ page import="modelos.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <% Conductor conductorIniciado = (Conductor) session.getAttribute("sesion");%>
+    <%@include file="detectarSesionIniciada.jsp" %>
+   
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -62,36 +63,36 @@
 				</th>	
 				<tr>
 					<td>Lugar Carga</td>
-					<td><input type="text" id="carga" name="carga"></td>
-					<td><input type="text" id="descarga" name="descarga"></td>
+					<td><input type="text" id="carga" name="carga" value="a"></td>
+					<td><input type="text" id="descarga" name="descarga" value="a"></td>
 					<td>Lugar Descarga</td>
 				</tr>	
 				<tr>
 					<td>Kilometraje</td>
-					<td><input type="number" id="kilometraje" name="kilometraje"></td>
-					<td><input type="date" id="fecha" name="fecha"></td>
+					<td><input type="number" id="kilometraje" name="kilometraje" value="1"></td>
+					<td><input type="date" id="fecha" name="fecha" value="2018-01-01"></td>
 					<td>Fecha</td>
 				</tr>
 				<tr>	
 					<td>L consumidos</td>
-					<td><input type="number" id="lConsumidos" name="litrosConsumidos"></td>
-					<td><input type="number" id="kmRecorridos" name="kmRecorridos"></td>
+					<td><input type="number" id="lConsumidos" name="litrosConsumidos" value="1"></td>
+					<td><input type="number" id="kmRecorridos" name="kmRecorridos" value="1"></td>
 					<td>Km Recorridos</td>
 				</tr>	
 				<tr>
 					<td>L Repostados</td>
-					<td><input type="number" id="lRepostados" name="litrosRepostados"></td>
-					<td><input type="number" id="consumo" name="consumo"></td>
+					<td><input type="number" id="lRepostados" name="litrosRepostados" value="1"></td>
+					<td><input type="number" id="consumo" name="consumo" value="1"></td>
 					<td>Consumo</td>
 				</tr>
 				<tr>
 					<td>Número Cmr</td>
-					<td><input type="number" id="num_cmr" name="numCmr"></td>
-					<td><input type="number" id="peso" name="peso"></td>
+					<td><input type="number" id="num_cmr" name="numCmr" value="1"></td>
+					<td><input type="number" id="peso" name="peso" value="1"></td>
 					<td>Peso</td>
 				</tr>
 				<tr>
-					<td colspan="4"> <textarea rows="10" cols="50"></textarea> </td>
+					<td colspan="4"> <textarea rows="10" cols="50" name="nota" default=" "></textarea> </td>
 				</tr>
 				</table>
 				<div id="botones">

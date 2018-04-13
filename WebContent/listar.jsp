@@ -10,6 +10,8 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@include file="detectarSesionIniciada.jsp" %>
+  
 <% 
 String conductor = request.getParameter("idConductor");
 int idConductor;
@@ -19,7 +21,7 @@ if (conductor != null){
 	idConductor = 1;
 
 %>
-    
+<a href="Action_CerrarSesion.jsp"><sub id="cerrarSesion">Cerrar Sesión</sub></a>
    
   
    
@@ -70,17 +72,13 @@ if (conductor != null){
 	.centrado{
 		margin: auto;
 	}
-	
+	#cerrarSesion{
+		display: inline;
+	}
 </style>
 
 </head>
 <body>
-
-<a href="listar.jsp?idConductor=0"><button>Iniciar Sesión como Admin</button></a>
-<a href="listar.jsp?idConductor=1"><button>Iniciar Sesión como Jose Luis</button></a>
-<a href="listar.jsp?idConductor=2"><button>Iniciar Sesión como Juanjo</button></a>
-
-<a href="Login.jsp"><button>Iniciar Sesión</button></a>
 
 <% 
 
@@ -89,15 +87,9 @@ if (conductor != null){
 	ViajeModelo viajeModelo = new ViajeModelo();
 	ConductorModelo conductorModelo = new ConductorModelo();
 	ArrayList<Viaje> viajes = viajeModelo.getViajes();
-	Conductor conductorIniciado = (Conductor)session.getAttribute("sesion");
 	
-	int id = 0;
 	
-	if (request.getParameter("id") != null){
-		id = Integer.parseInt(request.getParameter("id"));
-	}else {
-		System.out.println("Orden normal");
-	}
+	
 	
 	
 		if ((request.getParameter("orderby") != null) && (request.getParameter("orden")) != null){
@@ -105,18 +97,18 @@ if (conductor != null){
 			}
 	
 	int cantidadDeDatos = 5; //cantidad de columnas que tendrá la tabla %> 
-	<h1>Bienvenido, <%= conductorIniciado.getNombre() %></h1>
+	<h1>Bienvenido, <%= conductorIniciado.getNombre() %> </h1>
 	<h2>Tus Viajes: </h2>
 	<table class='viajes' id="tablaViajes">
 	<tr>
-		<td>
+		<!--  <td>
 			<img src="images/clave.png">
 			<table class="centrado">
 				<tr>
 					<td><a href="?orderby=id_viaje&orden=desc"><img src="images/asc.png" class="minicono"></td>
 					<td><a href="?orderby=id_viaje&orden=asc"><img src="images/desc.png" class="minicono"></td>
 				</tr>
-			</table>
+			</table>-->
 		</td>
 		<td>
 			<a href="?id=1"><img src="images/carga.png" class="icono"></a>
@@ -158,11 +150,11 @@ if (conductor != null){
 		Viaje viaje = viajes.get(i); 
 		%>
 		<tr>	
-			<td><p class="dato"><%= viaje.getIdViaje() %></p></td>
+			<!--   <td><p class="dato"><%= viaje.getIdViaje() %></p></td> -->
 			<td><p class="dato"><%= viaje.getCarga()%></p></td>
 			<td><p class="dato"><%= viaje.getDescarga()%></p></td>
 			<td><p class="dato"><%= viaje.getFecha()%></p></td>
-			<td><p class="dato"><%= viaje.getIdConductor()%></p></td>
+			
 			<td>
 				<% if ((conductorIniciado.getId_conductor() == viaje.getIdConductor()) || conductorIniciado.getId_conductor() == 0){
 					%>

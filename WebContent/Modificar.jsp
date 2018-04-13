@@ -1,6 +1,6 @@
 <%@ page import="clases.*" %>
 <%@ page import="modelos.*" %>
-
+<%@include file="detectarSesionIniciada.jsp" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -111,7 +111,7 @@ combustible = combustibleModelo.select(id);
 					<td>Peso</td>
 				</tr>
 				<tr>
-					<td colspan="4"> <textarea rows="10" cols="50"></textarea> </td>
+					<td colspan="4"> <textarea rows="10" cols="50" name="nota"><%= viaje.getNota() %></textarea> </td>
 				</tr>
 				</table>
 				<div id="botones">
