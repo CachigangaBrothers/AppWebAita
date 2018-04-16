@@ -100,6 +100,36 @@ public class ViajeModelo extends Conector{
 		}
 		return lista;
 	}
+	public ArrayList<Viaje> getViajes(Conductor conductor){
+		ArrayList<Viaje> lista = new ArrayList<Viaje>();
+		try {
+			PreparedStatement pst = conexion.prepareStatement("select * from viajes where id_conductor=?");
+			pst.setInt(1, conductor.getId_conductor());
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()){
+				Viaje viaje = new Viaje();
+				
+				viaje.setIdViaje(rs.getInt("id_viaje"));
+				viaje.setCarga(rs.getString("carga"));
+				viaje.setDescarga(rs.getString("descarga"));
+				viaje.setKilometraje(rs.getInt("kilometraje"));
+				viaje.setIdCombustible(rs.getInt("id_combustible"));
+				viaje.setIdCmr(rs.getInt("id_cmr"));
+				viaje.setFecha(rs.getDate("fecha"));
+				viaje.setIdConductor(rs.getInt("id_conductor"));
+				viaje.setNota(rs.getString("nota"));
+
+				lista.add(viaje);
+			}
+			System.out.println("SE HAN MOSTRADO TODOS LOS VIAJES.");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Error en listarViajes(Conductor)");
+		}
+		return lista;
+	}
 	
 	
 	public void delete (int id){

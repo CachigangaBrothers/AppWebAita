@@ -50,6 +50,7 @@ if (conductor != null){
 		margin-left: 0px;  /* 35% */
 	}
 	
+	
 	.icono:hover {
 		box-shadow: 0px 0px 20px 2px black;
 		border-radius: 3px;
@@ -75,6 +76,9 @@ if (conductor != null){
 	#cerrarSesion{
 		display: inline;
 	}
+	#sinBordeDerecho{
+		border-right: 0px solid black;
+	}
 </style>
 
 </head>
@@ -86,8 +90,14 @@ if (conductor != null){
 	BusquedaModelo bm = new BusquedaModelo();
 	ViajeModelo viajeModelo = new ViajeModelo();
 	ConductorModelo conductorModelo = new ConductorModelo();
-	ArrayList<Viaje> viajes = viajeModelo.getViajes();
+	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	
+	//BUSCAR VIAJES DEL PROPIO CONDUCTOR o DE TODOS
+	if ((boolean)session.getAttribute("misViajes").equals("true")){
+		 viajes = viajeModelo.getViajes(conductorIniciado);
+	} else {
+		viajes = viajeModelo.getViajes();
+	}
 	
 	
 	
@@ -138,11 +148,22 @@ if (conductor != null){
 				
 			</table>
 		</td>
-		<td></td>
+		<td>
+		  
+			<%  if ((boolean)session.getAttribute("misViajes").equals("true")){%>
+		 		 <button>Todos Los Viajes</button>
+			<% } else { %>
+				<button>Mis Viajes</button>
+	<% } %>
+			
+		</td>
 		<% if (conductorIniciado.getId_conductor() != 0){
 			out.print("<td><a href='insertar.jsp'><img src='images/plus.png' id='insertar' class='icono'></a></td>");
 		} %>
-		<td><a href='Buscar.jsp'><img src="images/lupa.png" id="buscar" class="icono"></a></td>
+		<td>	<input type="text" id="buscar" name="buscar"> 
+			<br>
+			<a href='Buscar.jsp'><img src="images/lupa.png" id="buscar" class="icono"></a>
+		</td>
 	</tr>
 	
 	<%

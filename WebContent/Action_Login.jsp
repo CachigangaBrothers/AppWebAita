@@ -16,6 +16,7 @@ if (request.getParameter("usuario") != null && request.getParameter("contrasena"
 	String contraseña = request.getParameter("contrasena");
 	Conductor conductor = conductorModelo.select(usuario, contraseña);
 		session.setAttribute("sesion", conductor);
+		session.setAttribute("misViajes", "true");
 		response.sendRedirect("listar.jsp");
 }else{
 	response.sendRedirect("Login.jsp");
